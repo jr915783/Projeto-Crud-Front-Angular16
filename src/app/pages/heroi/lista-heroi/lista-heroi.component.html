@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <h1 class="text-center"><b>{{ title }}</b></h1>  
+  <div class="d-flex justify-content-between">
+    <div>
+      <div><button class="btn btn-outline-primary mt-4" (click)="abrirModalCriarHeroi()">Novo Herói</button></div>
+    </div>
+    <form class="form-inline mt-4">
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="text" class="form-control"
+          placeholder="Pesquisar por Nome" (input)="filtrarGrid($event.target)">
+      </div>
+    </form>
+  </div>
+  <hr class="mt-2">
+  <table class="table">
+    <thead>
+      <tr class="align-middle"> 
+        <th scope="col"></th>              
+        <th scope="col" style="min-width: 200px;">Nome</th>
+        <th scope="col" style="min-width: 200px;">Descrição</th>
+        <th scope="col" style="min-width: 200px;">Categoria</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="align-middle">
+      <tr *ngFor="let heroi of listaHerois">  
+      <td></td>   
+        <td style="max-width: 100px;" class="card-text">{{heroi.name}}</td>
+        <td style="max-width: 100px;" class="card-text">{{heroi.description}}</td>
+        <td style="max-width: 100px;" class="card-text">{{heroi.category.name}}</td>
+        <td class="d-flex justify-content-end">
+          <small class=" p-1"><button class="btn btn-outline-primary"
+              (click)="abrirModalDetalheHeroi(heroi)">Detalhe</button></small>
+          <small class="p-1"><button class="btn btn btn-outline-primary"
+              (click)="abrirModalEditarHeroi(heroi)">Editar</button></small>
+          <small class=" p-1"><button class="btn btn-outline-danger"
+              (click)="abrirModalExcluirHeroi(heroi)">Excluir</button></small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center mt-2">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" pageBtnClass="btn"
+      previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>
+  <h3 *ngIf="filtroNaoEncotrado" class="text-center">{{dadosLista}}</h3>
+</div>

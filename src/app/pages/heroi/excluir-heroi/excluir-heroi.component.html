@@ -1,0 +1,10 @@
+ <section> 
+  <div mat-dialog-content>
+    <h4><b>Excluir Horói</b></h4>
+    <p>Tem certeza que deseja excluir o Herói <b>{{ data.name }}</b> ?</p>
+    <div class="d-flex justify-content-end mt-5">
+      <button class="btn btn-danger m-1 mt-4" (click)="cancelar()">Cancelar</button>
+      <button class="btn btn-success m-1 mt-4" (click)="excluirHeroi()">Excluir</button>
+    </div>
+  </div>
+</section>
