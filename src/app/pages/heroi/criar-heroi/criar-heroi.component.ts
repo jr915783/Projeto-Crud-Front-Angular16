@@ -5,8 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { HeroiService } from 'src/app/core/services/heroi.service';
 import { Category, Heroi } from 'src/app/core/types/type';
 
-
-
 @Component({
   selector: 'app-criar-heroi',
   templateUrl: './criar-heroi.component.html',
@@ -54,7 +52,7 @@ export class CriarHeroiComponent implements OnInit {
 
   criarHeroi() {
 
-    if (this.formulario.valid) {           
+    if (this.formulario.valid) {
 
       let heroiModel: Heroi = new Heroi();
       heroiModel.category = new Category();
@@ -63,12 +61,10 @@ export class CriarHeroiComponent implements OnInit {
       heroiModel.category.userId = 0;
       heroiModel.description = this.formulario.get('description')?.value;
       heroiModel.userId = 0;
-      heroiModel.name = this.formulario.get('name')?.value;   
+      heroiModel.name = this.formulario.get('name')?.value;
 
-      
-      
       if (this.data?.tipo == 'editar') {
-        
+
         heroiModel.id = this.formulario.get('id')?.value;
         this.service.editarHeroi(heroiModel).subscribe({
           next: (value) => {
@@ -78,7 +74,6 @@ export class CriarHeroiComponent implements OnInit {
           error: (err) => {
             this.toastr.error('Erro ao tentar Editar.', ' Erro!');
           },
-
         })
       } else {
         this.formulario.removeControl('id');
